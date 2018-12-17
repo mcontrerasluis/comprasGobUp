@@ -1,0 +1,66 @@
+{
+    "name": "OrdenCompra",
+    "fields": [
+        {
+            "fieldName": "fechaEntrada",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "estatus",
+            "fieldType": "EstatusOrden",
+            "fieldValues": "COMPLETADA,PENDIENTE,CANCELADA",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "codigo",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "lugarEntregaD",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "elementoOrden",
+            "otherEntityName": "elementoOrden",
+            "otherEntityRelationshipName": "ordenCompra"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "factura",
+            "otherEntityName": "factura",
+            "otherEntityRelationshipName": "ordenCompra"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "lugarEntrega",
+            "otherEntityName": "lugarEntrega",
+            "otherEntityField": "descripcion"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "dependencia",
+            "otherEntityName": "dependencia",
+            "otherEntityField": "nombreUnidad"
+        }
+    ],
+    "changelogDate": "20181129015351",
+    "entityTableName": "orden_compra",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,30 @@
+{
+    "comprasGobUpApp": {
+        "cUCOP": {
+            "home": {
+                "title": "CUCOPS",
+                "createLabel": "Crear nuevo CUCOP",
+                "createOrEditLabel": "Crear o editar CUCOP"
+            },
+            "created": "Un nuevo CUCOP ha sido creado con el identificador {{ param }}",
+            "updated": "Un CUCOP ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un CUCOP ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar CUCOP {{ id }}?"
+            },
+            "detail": {
+                "title": "CUCOP"
+            },
+            "tipo": "Tipo",
+            "claveCUCOP": "Clave CUCOP",
+            "partidaEsp": "Partida Esp",
+            "descripcion": "Descripcion",
+            "nivel": "Nivel",
+            "cABM": "C ABM",
+            "unidadMed": "Unidad Med",
+            "tipoContrata": "Tipo Contrata",
+            "imagen": "Imagen",
+            "contratoMarco": "Contrato Marco"
+        }
+    }
+}

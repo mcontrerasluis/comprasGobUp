@@ -1,0 +1,133 @@
+entity CUCOP{
+tipo Integer required
+claveCUCOP Integer 
+partidaEsp Integer
+descripcion String required
+nivel Integer required
+CABM String 
+unidadMed String
+tipoContrata String required
+imagen ImageBlob
+}
+
+entity LugarEntrega{
+descripcion String required
+estado String required
+municipio String required
+direccion String required
+latitud String required
+longitud String required
+}
+
+entity Dependencia{
+ramo Integer required
+nombreRamo String required
+unidad String required
+nombreUnidad String required
+contacto String required
+correoElectronico String required pattern(/^[^@\s]+@[^@\s]+\.[^@\s]+$/)
+telefono String required
+}
+
+entity Proveedor{
+nombre String required
+razonSocial String required
+RFC String required
+domicilioFiscal String required
+personaAutorizada String required
+correoElectronico String required pattern(/^[^@\s]+@[^@\s]+\.[^@\s]+$/)
+telefonoContacto String required
+telefonoContactoDos String required
+}
+
+entity ContratoMarco{
+autor String required
+titulo String required
+descripcion TextBlob required
+fechaVigencia LocalDate required
+monto Double
+cantidad Integer
+imagen ImageBlob
+contrato AnyBlob
+anexo AnyBlob
+convenio AnyBlob
+requisitos AnyBlob
+}
+
+entity OrdenCompra{
+fechaEntrada Instant required
+estatus EstatusOrden required
+codigo String required
+lugarEntregaD String
+}
+
+entity ElementoOrden{
+cantidad Integer required
+precioTotal BigDecimal required
+estatus EstatusElementoOrden required
+proveedorD String
+contratoMarcoD String
+}
+
+entity Factura{
+fecha Instant required
+detalles String 
+estatus EstatusFactura required
+metodoPago MetodoPago required
+fechaPago Instant required
+montoPagado BigDecimal required
+}
+
+entity Embarque{
+codigoRastreo String
+fecha Instant required
+detalles String required
+}
+
+enum MetodoPago{
+CREDITO, AJUSTE, ADECUACION
+}
+
+enum EstatusFactura{
+PAGADA, EMITIDA, CANCELADA
+}
+
+enum EstatusElementoOrden{
+DISPONIBLE, AGOTADO, SIN_EXISTENCIA
+}
+
+enum EstatusOrden{
+COMPLETADA, PENDIENTE, CANCELADA
+}
+
+relationship ManyToMany{
+ContratoMarco{proveedor(nombre)} to Proveedor{contratoMarco(titulo)}
+}
+
+relationship ManyToOne{
+LugarEntrega{dependencia(nombreUnidad)} to Dependencia{lugarEntrega(descripcion)}
+Dependencia{user} to User
+ElementoOrden{contratoMarco(descripcion)} to ContratoMarco
+ElementoOrden{proveedor(nombre)} to Proveedor
+OrdenCompra{lugarEntrega(descripcion)} to LugarEntrega
+}
+
+relationship OneToMany{
+CUCOP{contratoMarco(titulo)} to ContratoMarco{CUCOP(descripcion)}
+Dependencia{ordenCompra(codigo)} to OrdenCompra{dependencia(nombreUnidad)}
+OrdenCompra{elementoOrden} to ElementoOrden{ordenCompra}
+OrdenCompra{factura(detalles)} to Factura{ordenCompra(codigo)}
+Factura{embarque(codigoRastreo)} to Embarque{factura(detalle)}
+Dependencia{contratoMarco(titulo)} to ContratoMarco{dependencia(nombreUnidad)}
+}
+
+relationship OneToOne { 
+  Proveedor{user} to User
+  
+}
+
+service * with serviceImpl
+paginate * with pagination
+
+#title: comprasGob
+#stroke: #999999

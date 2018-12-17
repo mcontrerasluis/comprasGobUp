@@ -1,0 +1,91 @@
+{
+    "name": "Dependencia",
+    "fields": [
+        {
+            "fieldName": "ramo",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "nombreRamo",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "unidad",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "nombreUnidad",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "contacto",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "correoElectronico",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "pattern"
+            ],
+            "fieldValidateRulesPattern": "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$"
+        },
+        {
+            "fieldName": "telefono",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "ordenCompra",
+            "otherEntityName": "ordenCompra",
+            "otherEntityRelationshipName": "dependencia"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "contratoMarco",
+            "otherEntityName": "contratoMarco",
+            "otherEntityRelationshipName": "dependencia"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "lugarEntrega",
+            "otherEntityName": "lugarEntrega",
+            "otherEntityRelationshipName": "dependencia"
+        }
+    ],
+    "changelogDate": "20181129015348",
+    "entityTableName": "dependencia",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

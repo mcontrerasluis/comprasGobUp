@@ -1,0 +1,93 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="comprasGobUpApp.contratoMarco.home.title">Contrato Marco</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-contrato-marco" [routerLink]="['/contrato-marco/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="comprasGobUpApp.contratoMarco.home.createLabel">
+            Create new Contrato Marco
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div *ngIf="contratoMarcos">
+
+        <div class="mb-2 d-flex justify-content-end align-items-center">
+            <span class="mr-2 col-2">Filtrar por Nombre</span>
+<input type="search" class="form-control">
+<span class="mx-2 col-1">Ordenar por</span>
+<div class="btn-group" role="group"
+jhiSort [(predicate)]="predicate" [(ascending)]="reverse"
+[callback]="transition.bind(this)">
+<button type="button" class="btn btn-light" jhiSortBy="titulo">
+<span >Titulo</span>
+<span class="fa fa-sort"></span>
+</button>
+<button type="button" class="btn btn-light" jhiSortBy="monto">
+<span >Monto</span>
+<span class="fa fa-sort"></span>
+</button>
+<button type="button" class="btn btn-light" jhiSortBy="cantidad">
+<span >Cantidad</span>
+<span class="fa fa-sort"></span>
+</button>
+<button type="button" class="btn btn-light"
+jhiSortBy="id">
+<span >id Contrato</span>
+<span class="fa fa-sort"></span>
+</button>
+</div>
+</div>
+        
+            <div class="list-group">
+                <a [routerLink]="['/contrato-marco', contratoMarco.id, 'view' ]" class="list-group-item list-group-item-action flex-column
+align-items-start"  *ngFor="let contratoMarco of contratoMarcos ;trackBy: trackId">
+<div class="row">
+    <div class="col-2 col-xs-12 justify-content-center">
+        <img [src]="'data:' + contratoMarco.imagenContentType +
+';base64,' + contratoMarco.imagen"
+style="max-height:150px;" alt="contratoMarco.imagen"/>
+</div>
+<div class="col col-xs-12">
+<div class="d-flex w-100 justify-content-between">
+<h5 class="mb-1">{{contratoMarco.titulo}}</h5>
+<small >{{contratoMarco.autor}}</small>
+</div>
+<small class="mb-1">{{contratoMarco.descripcion}}</small>
+<p class="mb-1">Monto:{{contratoMarco.monto | currency:'MXP'}}</p>
+<small>
+Cantidad: {{contratoMarco.cantidad}}
+</small>
+<div>
+<button type="submit"
+                                [routerLink]="['/contrato-marco', contratoMarco.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'contrato-marco/'+ contratoMarco.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                        </div>
+</a>
+</div>
+</div>
+
+</div>
+    <div *ngIf="contratoMarcos && contratoMarcos.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+
+</div>
+                
+                

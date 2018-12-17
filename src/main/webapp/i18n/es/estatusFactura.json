@@ -1,0 +1,10 @@
+{
+    "comprasGobUpApp": {
+        "EstatusFactura": {
+            "null": "",
+            "PAGADA": "PAGADA",
+            "EMITIDA": "EMITIDA",
+            "CANCELADA": "CANCELADA"
+        }
+    }
+}

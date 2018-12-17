@@ -1,0 +1,85 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-orden-compra-heading" jhiTranslate="comprasGobUpApp.ordenCompra.home.createOrEditLabel">Create or edit a Orden Compra</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!ordenCompra.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="ordenCompra.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.ordenCompra.fechaEntrada" for="field_fechaEntrada">Fecha Entrada</label>
+                    <div class="d-flex">
+                        <input id="field_fechaEntrada" type="datetime-local" class="form-control" name="fechaEntrada" [(ngModel)]="fechaEntrada"
+                        required/>
+                    </div>
+                    <div [hidden]="!(editForm.controls.fechaEntrada?.dirty && editForm.controls.fechaEntrada?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.fechaEntrada?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.fechaEntrada?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.ordenCompra.estatus" for="field_estatus">Estatus</label>
+                    <select class="form-control" name="estatus" [(ngModel)]="ordenCompra.estatus" id="field_estatus"  required>
+                        <option value="COMPLETADA">{{'comprasGobUpApp.EstatusOrden.COMPLETADA' | translate}}</option>
+                        <option value="PENDIENTE">{{'comprasGobUpApp.EstatusOrden.PENDIENTE' | translate}}</option>
+                        <option value="CANCELADA">{{'comprasGobUpApp.EstatusOrden.CANCELADA' | translate}}</option>
+                    </select>
+                    <div [hidden]="!(editForm.controls.estatus?.dirty && editForm.controls.estatus?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.estatus?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.ordenCompra.codigo" for="field_codigo">Codigo</label>
+                    <input type="text" class="form-control" name="codigo" id="field_codigo"
+                        [(ngModel)]="ordenCompra.codigo" required/>
+                    <div [hidden]="!(editForm.controls.codigo?.dirty && editForm.controls.codigo?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.codigo?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.ordenCompra.lugarEntregaD" for="field_lugarEntregaD">Lugar Entrega D</label>
+                    <input type="text" class="form-control" name="lugarEntregaD" id="field_lugarEntregaD"
+                        [(ngModel)]="ordenCompra.lugarEntregaD" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.ordenCompra.lugarEntrega" for="field_lugarEntrega">Lugar Entrega</label>
+                    <select class="form-control" id="field_lugarEntrega" name="lugarEntrega" [(ngModel)]="ordenCompra.lugarEntrega" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="lugarEntregaOption.id === ordenCompra.lugarEntrega?.id ? ordenCompra.lugarEntrega : lugarEntregaOption" *ngFor="let lugarEntregaOption of lugarentregas; trackBy: trackLugarEntregaById">{{lugarEntregaOption.descripcion}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.ordenCompra.dependencia" for="field_dependencia">Dependencia</label>
+                    <select class="form-control" id="field_dependencia" name="dependencia" [(ngModel)]="ordenCompra.dependencia" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="dependenciaOption.id === ordenCompra.dependencia?.id ? ordenCompra.dependencia : dependenciaOption" *ngFor="let dependenciaOption of dependencias; trackBy: trackDependenciaById">{{dependenciaOption.nombreUnidad}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

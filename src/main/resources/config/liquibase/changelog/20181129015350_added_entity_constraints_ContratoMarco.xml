@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity ContratoMarco.
+    -->
+    <changeSet id="20181129015350-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="contrato_marcos_id"
+                                 baseTableName="contrato_marco_proveedor"
+                                 constraintName="fk_contrato_marco_proveedor_contrato_marcos_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="contrato_marco"/>
+        <addForeignKeyConstraint baseColumnNames="proveedors_id"
+                                 baseTableName="contrato_marco_proveedor"
+                                 constraintName="fk_contrato_marco_proveedor_proveedors_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="proveedor"/>
+        
+        <addForeignKeyConstraint baseColumnNames="cucop_id"
+                                 baseTableName="contrato_marco"
+                                 constraintName="fk_contrato_marco_cucop_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cucop"/>
+
+        <addForeignKeyConstraint baseColumnNames="dependencia_id"
+                                 baseTableName="contrato_marco"
+                                 constraintName="fk_contrato_marco_dependencia_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="dependencia"/>
+
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,71 @@
+{
+    "name": "CUCOP",
+    "fields": [
+        {
+            "fieldName": "tipo",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "claveCUCOP",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "partidaEsp",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "descripcion",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "nivel",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "cABM",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "unidadMed",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "tipoContrata",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "imagen",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "contratoMarco",
+            "otherEntityName": "contratoMarco",
+            "otherEntityRelationshipName": "cUCOP"
+        }
+    ],
+    "changelogDate": "20181129015346",
+    "entityTableName": "cucop",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

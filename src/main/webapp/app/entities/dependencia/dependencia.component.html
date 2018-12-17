@@ -1,0 +1,78 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="comprasGobUpApp.dependencia.home.title">Dependencias</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-dependencia" [routerLink]="['/dependencia/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="comprasGobUpApp.dependencia.home.createLabel">
+            Create new Dependencia
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="dependencias">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="ramo"><span jhiTranslate="comprasGobUpApp.dependencia.ramo">Ramo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nombreRamo"><span jhiTranslate="comprasGobUpApp.dependencia.nombreRamo">Nombre Ramo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="unidad"><span jhiTranslate="comprasGobUpApp.dependencia.unidad">Unidad</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nombreUnidad"><span jhiTranslate="comprasGobUpApp.dependencia.nombreUnidad">Nombre Unidad</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="contacto"><span jhiTranslate="comprasGobUpApp.dependencia.contacto">Contacto</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="correoElectronico"><span jhiTranslate="comprasGobUpApp.dependencia.correoElectronico">Correo Electronico</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="telefono"><span jhiTranslate="comprasGobUpApp.dependencia.telefono">Telefono</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="user.id"><span jhiTranslate="comprasGobUpApp.dependencia.user">User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let dependencia of dependencias ;trackBy: trackId">
+                <td><a [routerLink]="['/dependencia', dependencia.id, 'view' ]">{{dependencia.id}}</a></td>
+                <td>{{dependencia.ramo}}</td>
+                <td>{{dependencia.nombreRamo}}</td>
+                <td>{{dependencia.unidad}}</td>
+                <td>{{dependencia.nombreUnidad}}</td>
+                <td>{{dependencia.contacto}}</td>
+                <td>{{dependencia.correoElectronico}}</td>
+                <td>{{dependencia.telefono}}</td>
+                <td>
+                    {{dependencia.user?.id}}
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/dependencia', dependencia.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/dependencia', dependencia.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'dependencia/'+ dependencia.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="dependencias && dependencias.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

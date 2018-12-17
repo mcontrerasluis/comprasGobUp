@@ -1,0 +1,61 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="elementoOrden">
+            <h2><span jhiTranslate="comprasGobUpApp.elementoOrden.detail.title">Elemento Orden</span> {{elementoOrden.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="comprasGobUpApp.elementoOrden.cantidad">Cantidad</span></dt>
+                <dd>
+                    <span>{{elementoOrden.cantidad}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.elementoOrden.precioTotal">Precio Total</span></dt>
+                <dd>
+                    <span>{{elementoOrden.precioTotal}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.elementoOrden.estatus">Estatus</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'comprasGobUpApp.EstatusElementoOrden.' + elementoOrden.estatus}}">{{elementoOrden.estatus}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.elementoOrden.proveedorD">Proveedor D</span></dt>
+                <dd>
+                    <span>{{elementoOrden.proveedorD}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.elementoOrden.contratoMarcoD">Contrato Marco D</span></dt>
+                <dd>
+                    <span>{{elementoOrden.contratoMarcoD}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.elementoOrden.contratoMarco">Contrato Marco</span></dt>
+                <dd>
+                    <div *ngIf="elementoOrden.contratoMarco">
+                        <a [routerLink]="['/contrato-marco', elementoOrden.contratoMarco?.id, 'view']">{{elementoOrden.contratoMarco?.descripcion}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.elementoOrden.proveedor">Proveedor</span></dt>
+                <dd>
+                    <div *ngIf="elementoOrden.proveedor">
+                        <a [routerLink]="['/proveedor', elementoOrden.proveedor?.id, 'view']">{{elementoOrden.proveedor?.nombre}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.elementoOrden.ordenCompra">Orden Compra</span></dt>
+                <dd>
+                    <div *ngIf="elementoOrden.ordenCompra">
+                        <a [routerLink]="['/orden-compra', elementoOrden.ordenCompra?.id, 'view']">{{elementoOrden.ordenCompra?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/elemento-orden', elementoOrden.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

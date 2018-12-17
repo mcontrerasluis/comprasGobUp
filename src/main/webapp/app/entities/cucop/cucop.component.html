@@ -1,0 +1,84 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="comprasGobUpApp.cUCOP.home.title">CUCOPS</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-cucop" [routerLink]="['/cucop/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="comprasGobUpApp.cUCOP.home.createLabel">
+            Create new CUCOP
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="cUCOPS">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="tipo"><span jhiTranslate="comprasGobUpApp.cUCOP.tipo">Tipo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="claveCUCOP"><span jhiTranslate="comprasGobUpApp.cUCOP.claveCUCOP">Clave CUCOP</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="partidaEsp"><span jhiTranslate="comprasGobUpApp.cUCOP.partidaEsp">Partida Esp</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="descripcion"><span jhiTranslate="comprasGobUpApp.cUCOP.descripcion">Descripcion</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nivel"><span jhiTranslate="comprasGobUpApp.cUCOP.nivel">Nivel</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="cABM"><span jhiTranslate="comprasGobUpApp.cUCOP.cABM">C ABM</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="unidadMed"><span jhiTranslate="comprasGobUpApp.cUCOP.unidadMed">Unidad Med</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="tipoContrata"><span jhiTranslate="comprasGobUpApp.cUCOP.tipoContrata">Tipo Contrata</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="imagen"><span jhiTranslate="comprasGobUpApp.cUCOP.imagen">Imagen</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let cUCOP of cUCOPS ;trackBy: trackId">
+                <td><a [routerLink]="['/cucop', cUCOP.id, 'view' ]">{{cUCOP.id}}</a></td>
+                <td>{{cUCOP.tipo}}</td>
+                <td>{{cUCOP.claveCUCOP}}</td>
+                <td>{{cUCOP.partidaEsp}}</td>
+                <td>{{cUCOP.descripcion}}</td>
+                <td>{{cUCOP.nivel}}</td>
+                <td>{{cUCOP.cABM}}</td>
+                <td>{{cUCOP.unidadMed}}</td>
+                <td>{{cUCOP.tipoContrata}}</td>
+                <td>
+                    <a *ngIf="cUCOP.imagen" (click)="openFile(cUCOP.imagenContentType, cUCOP.imagen)">
+                        <img [src]="'data:' + cUCOP.imagenContentType + ';base64,' + cUCOP.imagen" style="max-height: 30px;" alt="cUCOP image"/>
+                    </a>
+                    <span *ngIf="cUCOP.imagen">{{cUCOP.imagenContentType}}, {{byteSize(cUCOP.imagen)}}</span>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/cucop', cUCOP.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/cucop', cUCOP.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'cucop/'+ cUCOP.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="cUCOPS && cUCOPS.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>    
+    </div>
+

@@ -1,0 +1,113 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-factura-heading" jhiTranslate="comprasGobUpApp.factura.home.createOrEditLabel">Create or edit a Factura</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!factura.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="factura.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.factura.fecha" for="field_fecha">Fecha</label>
+                    <div class="d-flex">
+                        <input id="field_fecha" type="datetime-local" class="form-control" name="fecha" [(ngModel)]="fecha"
+                        required/>
+                    </div>
+                    <div [hidden]="!(editForm.controls.fecha?.dirty && editForm.controls.fecha?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.fecha?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.fecha?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.factura.detalles" for="field_detalles">Detalles</label>
+                    <input type="text" class="form-control" name="detalles" id="field_detalles"
+                        [(ngModel)]="factura.detalles" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.factura.estatus" for="field_estatus">Estatus</label>
+                    <select class="form-control" name="estatus" [(ngModel)]="factura.estatus" id="field_estatus"  required>
+                        <option value="PAGADA">{{'comprasGobUpApp.EstatusFactura.PAGADA' | translate}}</option>
+                        <option value="EMITIDA">{{'comprasGobUpApp.EstatusFactura.EMITIDA' | translate}}</option>
+                        <option value="CANCELADA">{{'comprasGobUpApp.EstatusFactura.CANCELADA' | translate}}</option>
+                    </select>
+                    <div [hidden]="!(editForm.controls.estatus?.dirty && editForm.controls.estatus?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.estatus?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.factura.metodoPago" for="field_metodoPago">Metodo Pago</label>
+                    <select class="form-control" name="metodoPago" [(ngModel)]="factura.metodoPago" id="field_metodoPago"  required>
+                        <option value="CREDITO">{{'comprasGobUpApp.MetodoPago.CREDITO' | translate}}</option>
+                        <option value="AJUSTE">{{'comprasGobUpApp.MetodoPago.AJUSTE' | translate}}</option>
+                        <option value="ADECUACION">{{'comprasGobUpApp.MetodoPago.ADECUACION' | translate}}</option>
+                    </select>
+                    <div [hidden]="!(editForm.controls.metodoPago?.dirty && editForm.controls.metodoPago?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.metodoPago?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.factura.fechaPago" for="field_fechaPago">Fecha Pago</label>
+                    <div class="d-flex">
+                        <input id="field_fechaPago" type="datetime-local" class="form-control" name="fechaPago" [(ngModel)]="fechaPago"
+                        required/>
+                    </div>
+                    <div [hidden]="!(editForm.controls.fechaPago?.dirty && editForm.controls.fechaPago?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.fechaPago?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.fechaPago?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.factura.montoPagado" for="field_montoPagado">Monto Pagado</label>
+                    <input type="number" class="form-control" name="montoPagado" id="field_montoPagado"
+                        [(ngModel)]="factura.montoPagado" required/>
+                    <div [hidden]="!(editForm.controls.montoPagado?.dirty && editForm.controls.montoPagado?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.montoPagado?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.montoPagado?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.factura.ordenCompra" for="field_ordenCompra">Orden Compra</label>
+                    <select class="form-control" id="field_ordenCompra" name="ordenCompra" [(ngModel)]="factura.ordenCompra" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="ordenCompraOption.id === factura.ordenCompra?.id ? factura.ordenCompra : ordenCompraOption" *ngFor="let ordenCompraOption of ordencompras; trackBy: trackOrdenCompraById">{{ordenCompraOption.codigo}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

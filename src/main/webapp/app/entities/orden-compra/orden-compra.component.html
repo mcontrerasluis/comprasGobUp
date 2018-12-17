@@ -1,0 +1,80 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="comprasGobUpApp.ordenCompra.home.title">Orden Compras</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-orden-compra" [routerLink]="['/orden-compra/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="comprasGobUpApp.ordenCompra.home.createLabel">
+            Create new Orden Compra
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="ordenCompras">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="fechaEntrada"><span jhiTranslate="comprasGobUpApp.ordenCompra.fechaEntrada">Fecha Entrada</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="estatus"><span jhiTranslate="comprasGobUpApp.ordenCompra.estatus">Estatus</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="codigo"><span jhiTranslate="comprasGobUpApp.ordenCompra.codigo">Codigo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="lugarEntregaD"><span jhiTranslate="comprasGobUpApp.ordenCompra.lugarEntregaD">Lugar Entrega D</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="lugarEntrega.descripcion"><span jhiTranslate="comprasGobUpApp.ordenCompra.lugarEntrega">Lugar Entrega</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="dependencia.nombreUnidad"><span jhiTranslate="comprasGobUpApp.ordenCompra.dependencia">Dependencia</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let ordenCompra of ordenCompras ;trackBy: trackId">
+                <td><a [routerLink]="['/orden-compra', ordenCompra.id, 'view' ]">{{ordenCompra.id}}</a></td>
+                <td>{{ordenCompra.fechaEntrada | date:'medium'}}</td>
+                <td jhiTranslate="{{'comprasGobUpApp.EstatusOrden.' + ordenCompra.estatus}}">{{ordenCompra.estatus}}</td>
+                <td>{{ordenCompra.codigo}}</td>
+                <td>{{ordenCompra.lugarEntregaD}}</td>
+                <td>
+                    <div *ngIf="ordenCompra.lugarEntrega">
+                        <a [routerLink]="['../lugar-entrega', ordenCompra.lugarEntrega?.id, 'view' ]" >{{ordenCompra.lugarEntrega?.descripcion}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="ordenCompra.dependencia">
+                        <a [routerLink]="['../dependencia', ordenCompra.dependencia?.id, 'view' ]" >{{ordenCompra.dependencia?.nombreUnidad}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/orden-compra', ordenCompra.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/orden-compra', ordenCompra.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'orden-compra/'+ ordenCompra.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="ordenCompras && ordenCompras.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,99 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-elemento-orden-heading" jhiTranslate="comprasGobUpApp.elementoOrden.home.createOrEditLabel">Create or edit a Elemento Orden</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!elementoOrden.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="elementoOrden.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.elementoOrden.cantidad" for="field_cantidad">Cantidad</label>
+                    <input type="number" class="form-control" name="cantidad" id="field_cantidad"
+                        [(ngModel)]="elementoOrden.cantidad" required/>
+                    <div [hidden]="!(editForm.controls.cantidad?.dirty && editForm.controls.cantidad?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.cantidad?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.cantidad?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.elementoOrden.precioTotal" for="field_precioTotal">Precio Total</label>
+                    <input type="number" class="form-control" name="precioTotal" id="field_precioTotal"
+                        [(ngModel)]="elementoOrden.precioTotal" required/>
+                    <div [hidden]="!(editForm.controls.precioTotal?.dirty && editForm.controls.precioTotal?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.precioTotal?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.precioTotal?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.elementoOrden.estatus" for="field_estatus">Estatus</label>
+                    <select class="form-control" name="estatus" [(ngModel)]="elementoOrden.estatus" id="field_estatus"  required>
+                        <option value="DISPONIBLE">{{'comprasGobUpApp.EstatusElementoOrden.DISPONIBLE' | translate}}</option>
+                        <option value="AGOTADO">{{'comprasGobUpApp.EstatusElementoOrden.AGOTADO' | translate}}</option>
+                        <option value="SIN_EXISTENCIA">{{'comprasGobUpApp.EstatusElementoOrden.SIN_EXISTENCIA' | translate}}</option>
+                    </select>
+                    <div [hidden]="!(editForm.controls.estatus?.dirty && editForm.controls.estatus?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.estatus?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.elementoOrden.proveedorD" for="field_proveedorD">Proveedor D</label>
+                    <input type="text" class="form-control" name="proveedorD" id="field_proveedorD"
+                        [(ngModel)]="elementoOrden.proveedorD" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.elementoOrden.contratoMarcoD" for="field_contratoMarcoD">Contrato Marco D</label>
+                    <input type="text" class="form-control" name="contratoMarcoD" id="field_contratoMarcoD"
+                        [(ngModel)]="elementoOrden.contratoMarcoD" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.elementoOrden.contratoMarco" for="field_contratoMarco">Contrato Marco</label>
+                    <select class="form-control" id="field_contratoMarco" name="contratoMarco" [(ngModel)]="elementoOrden.contratoMarco" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="contratoMarcoOption.id === elementoOrden.contratoMarco?.id ? elementoOrden.contratoMarco : contratoMarcoOption" *ngFor="let contratoMarcoOption of contratomarcos; trackBy: trackContratoMarcoById">{{contratoMarcoOption.descripcion}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.elementoOrden.proveedor" for="field_proveedor">Proveedor</label>
+                    <select class="form-control" id="field_proveedor" name="proveedor" [(ngModel)]="elementoOrden.proveedor" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="proveedorOption.id === elementoOrden.proveedor?.id ? elementoOrden.proveedor : proveedorOption" *ngFor="let proveedorOption of proveedors; trackBy: trackProveedorById">{{proveedorOption.nombre}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.elementoOrden.ordenCompra" for="field_ordenCompra">Orden Compra</label>
+                    <select class="form-control" id="field_ordenCompra" name="ordenCompra" [(ngModel)]="elementoOrden.ordenCompra" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="ordenCompraOption.id === elementoOrden.ordenCompra?.id ? elementoOrden.ordenCompra : ordenCompraOption" *ngFor="let ordenCompraOption of ordencompras; trackBy: trackOrdenCompraById">{{ordenCompraOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

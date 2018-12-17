@@ -1,0 +1,53 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="lugarEntrega">
+            <h2><span jhiTranslate="comprasGobUpApp.lugarEntrega.detail.title">Lugar Entrega</span> {{lugarEntrega.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="comprasGobUpApp.lugarEntrega.descripcion">Descripcion</span></dt>
+                <dd>
+                    <span>{{lugarEntrega.descripcion}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.lugarEntrega.estado">Estado</span></dt>
+                <dd>
+                    <span>{{lugarEntrega.estado}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.lugarEntrega.municipio">Municipio</span></dt>
+                <dd>
+                    <span>{{lugarEntrega.municipio}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.lugarEntrega.direccion">Direccion</span></dt>
+                <dd>
+                    <span>{{lugarEntrega.direccion}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.lugarEntrega.latitud">Latitud</span></dt>
+                <dd>
+                    <span>{{lugarEntrega.latitud}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.lugarEntrega.longitud">Longitud</span></dt>
+                <dd>
+                    <span>{{lugarEntrega.longitud}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.lugarEntrega.dependencia">Dependencia</span></dt>
+                <dd>
+                    <div *ngIf="lugarEntrega.dependencia">
+                        <a [routerLink]="['/dependencia', lugarEntrega.dependencia?.id, 'view']">{{lugarEntrega.dependencia?.nombreUnidad}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/lugar-entrega', lugarEntrega.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

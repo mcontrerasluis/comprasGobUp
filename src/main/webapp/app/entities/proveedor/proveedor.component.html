@@ -1,0 +1,80 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="comprasGobUpApp.proveedor.home.title">Proveedors</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-proveedor" [routerLink]="['/proveedor/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="comprasGobUpApp.proveedor.home.createLabel">
+            Create new Proveedor
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="proveedors">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nombre"><span jhiTranslate="comprasGobUpApp.proveedor.nombre">Nombre</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="razonSocial"><span jhiTranslate="comprasGobUpApp.proveedor.razonSocial">Razon Social</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="rFC"><span jhiTranslate="comprasGobUpApp.proveedor.rFC">R FC</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="domicilioFiscal"><span jhiTranslate="comprasGobUpApp.proveedor.domicilioFiscal">Domicilio Fiscal</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="personaAutorizada"><span jhiTranslate="comprasGobUpApp.proveedor.personaAutorizada">Persona Autorizada</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="correoElectronico"><span jhiTranslate="comprasGobUpApp.proveedor.correoElectronico">Correo Electronico</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="telefonoContacto"><span jhiTranslate="comprasGobUpApp.proveedor.telefonoContacto">Telefono Contacto</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="telefonoContactoDos"><span jhiTranslate="comprasGobUpApp.proveedor.telefonoContactoDos">Telefono Contacto Dos</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="user.id"><span jhiTranslate="comprasGobUpApp.proveedor.user">User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let proveedor of proveedors ;trackBy: trackId">
+                <td><a [routerLink]="['/proveedor', proveedor.id, 'view' ]">{{proveedor.id}}</a></td>
+                <td>{{proveedor.nombre}}</td>
+                <td>{{proveedor.razonSocial}}</td>
+                <td>{{proveedor.rFC}}</td>
+                <td>{{proveedor.domicilioFiscal}}</td>
+                <td>{{proveedor.personaAutorizada}}</td>
+                <td>{{proveedor.correoElectronico}}</td>
+                <td>{{proveedor.telefonoContacto}}</td>
+                <td>{{proveedor.telefonoContactoDos}}</td>
+                <td>
+                    {{proveedor.user?.id}}
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/proveedor', proveedor.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/proveedor', proveedor.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'proveedor/'+ proveedor.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="proveedors && proveedors.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,98 @@
+{
+    "name": "ContratoMarco",
+    "fields": [
+        {
+            "fieldName": "autor",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "titulo",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "descripcion",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "fechaVigencia",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "monto",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "cantidad",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "imagen",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "contrato",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any"
+        },
+        {
+            "fieldName": "anexo",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any"
+        },
+        {
+            "fieldName": "convenio",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any"
+        },
+        {
+            "fieldName": "requisitos",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "contratoMarco",
+            "relationshipName": "proveedor",
+            "otherEntityName": "proveedor",
+            "otherEntityField": "nombre",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "cUCOP",
+            "otherEntityName": "cUCOP",
+            "otherEntityField": "descripcion"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "dependencia",
+            "otherEntityName": "dependencia",
+            "otherEntityField": "nombreUnidad"
+        }
+    ],
+    "changelogDate": "20181129015350",
+    "entityTableName": "contrato_marco",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

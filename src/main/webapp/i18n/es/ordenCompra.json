@@ -1,0 +1,28 @@
+{
+    "comprasGobUpApp": {
+        "ordenCompra": {
+            "home": {
+                "title": "Orden Compras",
+                "createLabel": "Crear nuevo Orden Compra",
+                "createOrEditLabel": "Crear o editar Orden Compra"
+            },
+            "created": "Un nuevo Orden Compra ha sido creado con el identificador {{ param }}",
+            "updated": "Un Orden Compra ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Orden Compra ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Orden Compra {{ id }}?"
+            },
+            "detail": {
+                "title": "Orden Compra"
+            },
+            "fechaEntrada": "Fecha Entrada",
+            "estatus": "Estatus",
+            "codigo": "Codigo",
+            "lugarEntregaD": "Lugar Entrega D",
+            "elementoOrden": "Elemento Orden",
+            "factura": "Factura",
+            "lugarEntrega": "Lugar Entrega",
+            "dependencia": "Dependencia"
+        }
+    }
+}

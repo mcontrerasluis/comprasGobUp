@@ -2,11 +2,7 @@
     <div class="jh-logo-container float-left">
         <a class="jh-navbar-toggler d-lg-none float-right" href="javascript:void(0);" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleNavbar()">
             <fa-icon icon="bars"></fa-icon>
-        </a>
-        <a class="navbar-brand logo float-left" routerLink="/" (click)="collapseNavbar()">
-            <span class="logo-img"></span>
-            <span jhiTranslate="global.title" class="navbar-title">ComprasGobUp</span> <span class="navbar-version">{{version}}</span>
-        </a>
+        </a>        
     </div>
     <div class="navbar-collapse collapse" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed" [ngSwitch]="isAuthenticated()">
         <ul class="navbar-nav ml-auto">
@@ -29,6 +25,60 @@
                     </span>
                 </a>
                 <ul class="dropdown-menu" ngbDropdownMenu>
+                    <li>
+                        <a class="dropdown-item" routerLink="cucop" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.cucop">Cucop</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="lugar-entrega" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.lugarEntrega">Lugar Entrega</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="dependencia" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.dependencia">Dependencia</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="proveedor" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.proveedor">Proveedor</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="contrato-marco" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.contratoMarco">Contrato Marco</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="orden-compra" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.ordenCompra">Orden Compra</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="elemento-orden" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.elementoOrden">Elemento Orden</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="factura" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.factura">Factura</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="embarque" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.embarque">Embarque</span>
+                        </a>
+                    </li>
                     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                 </ul>
             </li>

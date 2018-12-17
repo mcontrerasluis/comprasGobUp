@@ -1,0 +1,102 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="contratoMarco">
+            <h2><span jhiTranslate="comprasGobUpApp.contratoMarco.detail.title">Contrato Marco</span> {{contratoMarco.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="comprasGobUpApp.contratoMarco.autor">Autor</span></dt>
+                <dd>
+                    <span>{{contratoMarco.autor}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.contratoMarco.titulo">Titulo</span></dt>
+                <dd>
+                    <span>{{contratoMarco.titulo}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.contratoMarco.descripcion">Descripcion</span></dt>
+                <dd>
+                    <span>{{contratoMarco.descripcion}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.contratoMarco.fechaVigencia">Fecha Vigencia</span></dt>
+                <dd>
+                    <span>{{contratoMarco.fechaVigencia}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.contratoMarco.monto">Monto</span></dt>
+                <dd>
+                    <span>{{contratoMarco.monto}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.contratoMarco.cantidad">Cantidad</span></dt>
+                <dd>
+                    <span>{{contratoMarco.cantidad}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.contratoMarco.imagen">Imagen</span></dt>
+                <dd>
+                    <div *ngIf="contratoMarco.imagen">
+                        <a (click)="openFile(contratoMarco.imagenContentType, contratoMarco.imagen)">
+                            <img [src]="'data:' + contratoMarco.imagenContentType + ';base64,' + contratoMarco.imagen" style="max-width: 100%;" alt="contratoMarco image"/>
+                        </a>
+                        {{contratoMarco.imagenContentType}}, {{byteSize(contratoMarco.imagen)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.contratoMarco.contrato">Contrato</span></dt>
+                <dd>
+                    <div *ngIf="contratoMarco.contrato">
+                        <a (click)="openFile(contratoMarco.contratoContentType, contratoMarco.contrato)" jhiTranslate="entity.action.open">open</a>
+                        {{contratoMarco.contratoContentType}}, {{byteSize(contratoMarco.contrato)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.contratoMarco.anexo">Anexo</span></dt>
+                <dd>
+                    <div *ngIf="contratoMarco.anexo">
+                        <a (click)="openFile(contratoMarco.anexoContentType, contratoMarco.anexo)" jhiTranslate="entity.action.open">open</a>
+                        {{contratoMarco.anexoContentType}}, {{byteSize(contratoMarco.anexo)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.contratoMarco.convenio">Convenio</span></dt>
+                <dd>
+                    <div *ngIf="contratoMarco.convenio">
+                        <a (click)="openFile(contratoMarco.convenioContentType, contratoMarco.convenio)" jhiTranslate="entity.action.open">open</a>
+                        {{contratoMarco.convenioContentType}}, {{byteSize(contratoMarco.convenio)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.contratoMarco.requisitos">Requisitos</span></dt>
+                <dd>
+                    <div *ngIf="contratoMarco.requisitos">
+                        <a (click)="openFile(contratoMarco.requisitosContentType, contratoMarco.requisitos)" jhiTranslate="entity.action.open">open</a>
+                        {{contratoMarco.requisitosContentType}}, {{byteSize(contratoMarco.requisitos)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.contratoMarco.proveedor">Proveedor</span></dt>
+                <dd>
+                    <span *ngFor="let proveedor of contratoMarco.proveedors; let last = last">
+                        <a [routerLink]="['/proveedor', proveedor?.id, 'view' ]">{{proveedor.nombre}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.contratoMarco.cUCOP">C UCOP</span></dt>
+                <dd>
+                    <div *ngIf="contratoMarco.cUCOP">
+                        <a [routerLink]="['/cucop', contratoMarco.cUCOP?.id, 'view']">{{contratoMarco.cUCOP?.descripcion}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.contratoMarco.dependencia">Dependencia</span></dt>
+                <dd>
+                    <div *ngIf="contratoMarco.dependencia">
+                        <a [routerLink]="['/dependencia', contratoMarco.dependencia?.id, 'view']">{{contratoMarco.dependencia?.nombreUnidad}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/contrato-marco', contratoMarco.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

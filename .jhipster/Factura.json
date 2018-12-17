@@ -1,0 +1,69 @@
+{
+    "name": "Factura",
+    "fields": [
+        {
+            "fieldName": "fecha",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "detalles",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "estatus",
+            "fieldType": "EstatusFactura",
+            "fieldValues": "PAGADA,EMITIDA,CANCELADA",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "metodoPago",
+            "fieldType": "MetodoPago",
+            "fieldValues": "CREDITO,AJUSTE,ADECUACION",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "fechaPago",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "montoPagado",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "embarque",
+            "otherEntityName": "embarque",
+            "otherEntityRelationshipName": "factura"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "ordenCompra",
+            "otherEntityName": "ordenCompra",
+            "otherEntityField": "codigo"
+        }
+    ],
+    "changelogDate": "20181129015353",
+    "entityTableName": "factura",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

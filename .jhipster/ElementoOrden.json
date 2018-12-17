@@ -1,0 +1,64 @@
+{
+    "name": "ElementoOrden",
+    "fields": [
+        {
+            "fieldName": "cantidad",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "precioTotal",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "estatus",
+            "fieldType": "EstatusElementoOrden",
+            "fieldValues": "DISPONIBLE,AGOTADO,SIN_EXISTENCIA",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "proveedorD",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "contratoMarcoD",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "contratoMarco",
+            "otherEntityName": "contratoMarco",
+            "otherEntityField": "descripcion"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "proveedor",
+            "otherEntityName": "proveedor",
+            "otherEntityField": "nombre"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "ordenCompra",
+            "otherEntityName": "ordenCompra",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20181129015352",
+    "entityTableName": "elemento_orden",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

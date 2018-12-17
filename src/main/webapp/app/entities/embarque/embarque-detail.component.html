@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="embarque">
+            <h2><span jhiTranslate="comprasGobUpApp.embarque.detail.title">Embarque</span> {{embarque.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="comprasGobUpApp.embarque.codigoRastreo">Codigo Rastreo</span></dt>
+                <dd>
+                    <span>{{embarque.codigoRastreo}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.embarque.fecha">Fecha</span></dt>
+                <dd>
+                    <span>{{embarque.fecha}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.embarque.detalles">Detalles</span></dt>
+                <dd>
+                    <span>{{embarque.detalles}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.embarque.factura">Factura</span></dt>
+                <dd>
+                    <div *ngIf="embarque.factura">
+                        <a [routerLink]="['/factura', embarque.factura?.id, 'view']">{{embarque.factura?.detalle}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/embarque', embarque.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

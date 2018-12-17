@@ -1,0 +1,64 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-embarque-heading" jhiTranslate="comprasGobUpApp.embarque.home.createOrEditLabel">Create or edit a Embarque</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!embarque.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="embarque.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.embarque.codigoRastreo" for="field_codigoRastreo">Codigo Rastreo</label>
+                    <input type="text" class="form-control" name="codigoRastreo" id="field_codigoRastreo"
+                        [(ngModel)]="embarque.codigoRastreo" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.embarque.fecha" for="field_fecha">Fecha</label>
+                    <div class="d-flex">
+                        <input id="field_fecha" type="datetime-local" class="form-control" name="fecha" [(ngModel)]="fecha"
+                        required/>
+                    </div>
+                    <div [hidden]="!(editForm.controls.fecha?.dirty && editForm.controls.fecha?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.fecha?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.fecha?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.embarque.detalles" for="field_detalles">Detalles</label>
+                    <input type="text" class="form-control" name="detalles" id="field_detalles"
+                        [(ngModel)]="embarque.detalles" required/>
+                    <div [hidden]="!(editForm.controls.detalles?.dirty && editForm.controls.detalles?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.detalles?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.embarque.factura" for="field_factura">Factura</label>
+                    <select class="form-control" id="field_factura" name="factura" [(ngModel)]="embarque.factura" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="facturaOption.id === embarque.factura?.id ? embarque.factura : facturaOption" *ngFor="let facturaOption of facturas; trackBy: trackFacturaById">{{facturaOption.detalle}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

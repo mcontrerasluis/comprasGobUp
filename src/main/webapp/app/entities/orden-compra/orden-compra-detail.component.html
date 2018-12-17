@@ -1,0 +1,51 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="ordenCompra">
+            <h2><span jhiTranslate="comprasGobUpApp.ordenCompra.detail.title">Orden Compra</span> {{ordenCompra.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="comprasGobUpApp.ordenCompra.fechaEntrada">Fecha Entrada</span></dt>
+                <dd>
+                    <span>{{ordenCompra.fechaEntrada}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.ordenCompra.estatus">Estatus</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'comprasGobUpApp.EstatusOrden.' + ordenCompra.estatus}}">{{ordenCompra.estatus}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.ordenCompra.codigo">Codigo</span></dt>
+                <dd>
+                    <span>{{ordenCompra.codigo}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.ordenCompra.lugarEntregaD">Lugar Entrega D</span></dt>
+                <dd>
+                    <span>{{ordenCompra.lugarEntregaD}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.ordenCompra.lugarEntrega">Lugar Entrega</span></dt>
+                <dd>
+                    <div *ngIf="ordenCompra.lugarEntrega">
+                        <a [routerLink]="['/lugar-entrega', ordenCompra.lugarEntrega?.id, 'view']">{{ordenCompra.lugarEntrega?.descripcion}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.ordenCompra.dependencia">Dependencia</span></dt>
+                <dd>
+                    <div *ngIf="ordenCompra.dependencia">
+                        <a [routerLink]="['/dependencia', ordenCompra.dependencia?.id, 'view']">{{ordenCompra.dependencia?.nombreUnidad}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/orden-compra', ordenCompra.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

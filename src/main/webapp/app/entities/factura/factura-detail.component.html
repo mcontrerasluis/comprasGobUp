@@ -1,0 +1,53 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="factura">
+            <h2><span jhiTranslate="comprasGobUpApp.factura.detail.title">Factura</span> {{factura.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="comprasGobUpApp.factura.fecha">Fecha</span></dt>
+                <dd>
+                    <span>{{factura.fecha}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.factura.detalles">Detalles</span></dt>
+                <dd>
+                    <span>{{factura.detalles}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.factura.estatus">Estatus</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'comprasGobUpApp.EstatusFactura.' + factura.estatus}}">{{factura.estatus}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.factura.metodoPago">Metodo Pago</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'comprasGobUpApp.MetodoPago.' + factura.metodoPago}}">{{factura.metodoPago}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.factura.fechaPago">Fecha Pago</span></dt>
+                <dd>
+                    <span>{{factura.fechaPago}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.factura.montoPagado">Monto Pagado</span></dt>
+                <dd>
+                    <span>{{factura.montoPagado}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.factura.ordenCompra">Orden Compra</span></dt>
+                <dd>
+                    <div *ngIf="factura.ordenCompra">
+                        <a [routerLink]="['/orden-compra', factura.ordenCompra?.id, 'view']">{{factura.ordenCompra?.codigo}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/factura', factura.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

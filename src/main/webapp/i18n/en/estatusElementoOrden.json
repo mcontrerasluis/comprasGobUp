@@ -1,0 +1,10 @@
+{
+    "comprasGobUpApp": {
+        "EstatusElementoOrden": {
+            "null": "",
+            "DISPONIBLE": "DISPONIBLE",
+            "AGOTADO": "AGOTADO",
+            "SIN_EXISTENCIA": "SIN_EXISTENCIA"
+        }
+    }
+}

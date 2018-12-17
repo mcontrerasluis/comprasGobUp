@@ -1,0 +1,59 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="proveedor">
+            <h2><span jhiTranslate="comprasGobUpApp.proveedor.detail.title">Proveedor</span> {{proveedor.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="comprasGobUpApp.proveedor.nombre">Nombre</span></dt>
+                <dd>
+                    <span>{{proveedor.nombre}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.proveedor.razonSocial">Razon Social</span></dt>
+                <dd>
+                    <span>{{proveedor.razonSocial}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.proveedor.rFC">R FC</span></dt>
+                <dd>
+                    <span>{{proveedor.rFC}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.proveedor.domicilioFiscal">Domicilio Fiscal</span></dt>
+                <dd>
+                    <span>{{proveedor.domicilioFiscal}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.proveedor.personaAutorizada">Persona Autorizada</span></dt>
+                <dd>
+                    <span>{{proveedor.personaAutorizada}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.proveedor.correoElectronico">Correo Electronico</span></dt>
+                <dd>
+                    <span>{{proveedor.correoElectronico}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.proveedor.telefonoContacto">Telefono Contacto</span></dt>
+                <dd>
+                    <span>{{proveedor.telefonoContacto}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.proveedor.telefonoContactoDos">Telefono Contacto Dos</span></dt>
+                <dd>
+                    <span>{{proveedor.telefonoContactoDos}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.proveedor.user">User</span></dt>
+                <dd>
+                    {{proveedor.user?.id}}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/proveedor', proveedor.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

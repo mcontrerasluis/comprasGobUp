@@ -1,0 +1,64 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="cUCOP">
+            <h2><span jhiTranslate="comprasGobUpApp.cUCOP.detail.title">CUCOP</span> {{cUCOP.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="comprasGobUpApp.cUCOP.tipo">Tipo</span></dt>
+                <dd>
+                    <span>{{cUCOP.tipo}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.cUCOP.claveCUCOP">Clave CUCOP</span></dt>
+                <dd>
+                    <span>{{cUCOP.claveCUCOP}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.cUCOP.partidaEsp">Partida Esp</span></dt>
+                <dd>
+                    <span>{{cUCOP.partidaEsp}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.cUCOP.descripcion">Descripcion</span></dt>
+                <dd>
+                    <span>{{cUCOP.descripcion}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.cUCOP.nivel">Nivel</span></dt>
+                <dd>
+                    <span>{{cUCOP.nivel}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.cUCOP.cABM">C ABM</span></dt>
+                <dd>
+                    <span>{{cUCOP.cABM}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.cUCOP.unidadMed">Unidad Med</span></dt>
+                <dd>
+                    <span>{{cUCOP.unidadMed}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.cUCOP.tipoContrata">Tipo Contrata</span></dt>
+                <dd>
+                    <span>{{cUCOP.tipoContrata}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.cUCOP.imagen">Imagen</span></dt>
+                <dd>
+                    <div *ngIf="cUCOP.imagen">
+                        <a (click)="openFile(cUCOP.imagenContentType, cUCOP.imagen)">
+                            <img [src]="'data:' + cUCOP.imagenContentType + ';base64,' + cUCOP.imagen" style="max-width: 100%;" alt="cUCOP image"/>
+                        </a>
+                        {{cUCOP.imagenContentType}}, {{byteSize(cUCOP.imagen)}}
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/cucop', cUCOP.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

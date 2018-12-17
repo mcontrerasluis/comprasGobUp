@@ -1,0 +1,113 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-cucop-heading" jhiTranslate="comprasGobUpApp.cUCOP.home.createOrEditLabel">Create or edit a CUCOP</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!cUCOP.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="cUCOP.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.cUCOP.tipo" for="field_tipo">Tipo</label>
+                    <input type="number" class="form-control" name="tipo" id="field_tipo"
+                        [(ngModel)]="cUCOP.tipo" required/>
+                    <div [hidden]="!(editForm.controls.tipo?.dirty && editForm.controls.tipo?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.tipo?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.tipo?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.cUCOP.claveCUCOP" for="field_claveCUCOP">Clave CUCOP</label>
+                    <input type="number" class="form-control" name="claveCUCOP" id="field_claveCUCOP"
+                        [(ngModel)]="cUCOP.claveCUCOP" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.cUCOP.partidaEsp" for="field_partidaEsp">Partida Esp</label>
+                    <input type="number" class="form-control" name="partidaEsp" id="field_partidaEsp"
+                        [(ngModel)]="cUCOP.partidaEsp" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.cUCOP.descripcion" for="field_descripcion">Descripcion</label>
+                    <input type="text" class="form-control" name="descripcion" id="field_descripcion"
+                        [(ngModel)]="cUCOP.descripcion" required/>
+                    <div [hidden]="!(editForm.controls.descripcion?.dirty && editForm.controls.descripcion?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.descripcion?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.cUCOP.nivel" for="field_nivel">Nivel</label>
+                    <input type="number" class="form-control" name="nivel" id="field_nivel"
+                        [(ngModel)]="cUCOP.nivel" required/>
+                    <div [hidden]="!(editForm.controls.nivel?.dirty && editForm.controls.nivel?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.nivel?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.nivel?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.cUCOP.cABM" for="field_cABM">C ABM</label>
+                    <input type="text" class="form-control" name="cABM" id="field_cABM"
+                        [(ngModel)]="cUCOP.cABM" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.cUCOP.unidadMed" for="field_unidadMed">Unidad Med</label>
+                    <input type="text" class="form-control" name="unidadMed" id="field_unidadMed"
+                        [(ngModel)]="cUCOP.unidadMed" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.cUCOP.tipoContrata" for="field_tipoContrata">Tipo Contrata</label>
+                    <input type="text" class="form-control" name="tipoContrata" id="field_tipoContrata"
+                        [(ngModel)]="cUCOP.tipoContrata" required/>
+                    <div [hidden]="!(editForm.controls.tipoContrata?.dirty && editForm.controls.tipoContrata?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.tipoContrata?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.cUCOP.imagen" for="field_imagen">Imagen</label>
+                    <div>
+                        <img [src]="'data:' + cUCOP.imagenContentType + ';base64,' + cUCOP.imagen" style="max-height: 100px;" *ngIf="cUCOP.imagen" alt="cUCOP image"/>
+                        <div *ngIf="cUCOP.imagen" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{cUCOP.imagenContentType}}, {{byteSize(cUCOP.imagen)}}</span>
+                            <button type="button" (click)="clearInputImage('imagen', 'imagenContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_imagen" (change)="setFileData($event, cUCOP, 'imagen', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="imagen" id="field_imagen"
+                        [(ngModel)]="cUCOP.imagen" />
+                    <input type="hidden" class="form-control" name="imagenContentType" id="field_imagenContentType"
+                        [(ngModel)]="cUCOP.imagenContentType" />
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

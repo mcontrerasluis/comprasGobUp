@@ -1,0 +1,55 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="dependencia">
+            <h2><span jhiTranslate="comprasGobUpApp.dependencia.detail.title">Dependencia</span> {{dependencia.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="comprasGobUpApp.dependencia.ramo">Ramo</span></dt>
+                <dd>
+                    <span>{{dependencia.ramo}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.dependencia.nombreRamo">Nombre Ramo</span></dt>
+                <dd>
+                    <span>{{dependencia.nombreRamo}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.dependencia.unidad">Unidad</span></dt>
+                <dd>
+                    <span>{{dependencia.unidad}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.dependencia.nombreUnidad">Nombre Unidad</span></dt>
+                <dd>
+                    <span>{{dependencia.nombreUnidad}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.dependencia.contacto">Contacto</span></dt>
+                <dd>
+                    <span>{{dependencia.contacto}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.dependencia.correoElectronico">Correo Electronico</span></dt>
+                <dd>
+                    <span>{{dependencia.correoElectronico}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.dependencia.telefono">Telefono</span></dt>
+                <dd>
+                    <span>{{dependencia.telefono}}</span>
+                </dd>
+                <dt><span jhiTranslate="comprasGobUpApp.dependencia.user">User</span></dt>
+                <dd>
+                    {{dependencia.user?.id}}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/dependencia', dependencia.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

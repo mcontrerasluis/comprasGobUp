@@ -1,0 +1,27 @@
+{
+    "comprasGobUpApp": {
+        "lugarEntrega": {
+            "home": {
+                "title": "Lugar Entregas",
+                "createLabel": "Crear nuevo Lugar Entrega",
+                "createOrEditLabel": "Crear o editar Lugar Entrega"
+            },
+            "created": "Un nuevo Lugar Entrega ha sido creado con el identificador {{ param }}",
+            "updated": "Un Lugar Entrega ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Lugar Entrega ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Lugar Entrega {{ id }}?"
+            },
+            "detail": {
+                "title": "Lugar Entrega"
+            },
+            "descripcion": "Descripcion",
+            "estado": "Estado",
+            "municipio": "Municipio",
+            "direccion": "Direccion",
+            "latitud": "Latitud",
+            "longitud": "Longitud",
+            "dependencia": "Dependencia"
+        }
+    }
+}

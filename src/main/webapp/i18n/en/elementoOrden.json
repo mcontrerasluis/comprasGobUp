@@ -1,0 +1,28 @@
+{
+    "comprasGobUpApp": {
+        "elementoOrden": {
+            "home": {
+                "title": "Elemento Ordens",
+                "createLabel": "Create a new Elemento Orden",
+                "createOrEditLabel": "Create or edit a Elemento Orden"
+            },
+            "created": "A new Elemento Orden is created with identifier {{ param }}",
+            "updated": "A Elemento Orden is updated with identifier {{ param }}",
+            "deleted": "A Elemento Orden is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Elemento Orden {{ id }}?"
+            },
+            "detail": {
+                "title": "Elemento Orden"
+            },
+            "cantidad": "Cantidad",
+            "precioTotal": "Precio Total",
+            "estatus": "Estatus",
+            "proveedorD": "Proveedor D",
+            "contratoMarcoD": "Contrato Marco D",
+            "contratoMarco": "Contrato Marco",
+            "proveedor": "Proveedor",
+            "ordenCompra": "Orden Compra"
+        }
+    }
+}

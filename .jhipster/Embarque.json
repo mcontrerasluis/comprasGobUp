@@ -1,0 +1,40 @@
+{
+    "name": "Embarque",
+    "fields": [
+        {
+            "fieldName": "codigoRastreo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "fecha",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "detalles",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "factura",
+            "otherEntityName": "factura",
+            "otherEntityField": "detalle"
+        }
+    ],
+    "changelogDate": "20181129015354",
+    "entityTableName": "embarque",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

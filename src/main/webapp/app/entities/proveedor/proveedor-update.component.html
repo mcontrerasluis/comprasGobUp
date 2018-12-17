@@ -1,0 +1,123 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-proveedor-heading" jhiTranslate="comprasGobUpApp.proveedor.home.createOrEditLabel">Create or edit a Proveedor</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!proveedor.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="proveedor.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.proveedor.nombre" for="field_nombre">Nombre</label>
+                    <input type="text" class="form-control" name="nombre" id="field_nombre"
+                        [(ngModel)]="proveedor.nombre" required/>
+                    <div [hidden]="!(editForm.controls.nombre?.dirty && editForm.controls.nombre?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.nombre?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.proveedor.razonSocial" for="field_razonSocial">Razon Social</label>
+                    <input type="text" class="form-control" name="razonSocial" id="field_razonSocial"
+                        [(ngModel)]="proveedor.razonSocial" required/>
+                    <div [hidden]="!(editForm.controls.razonSocial?.dirty && editForm.controls.razonSocial?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.razonSocial?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.proveedor.rFC" for="field_rFC">R FC</label>
+                    <input type="text" class="form-control" name="rFC" id="field_rFC"
+                        [(ngModel)]="proveedor.rFC" required/>
+                    <div [hidden]="!(editForm.controls.rFC?.dirty && editForm.controls.rFC?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.rFC?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.proveedor.domicilioFiscal" for="field_domicilioFiscal">Domicilio Fiscal</label>
+                    <input type="text" class="form-control" name="domicilioFiscal" id="field_domicilioFiscal"
+                        [(ngModel)]="proveedor.domicilioFiscal" required/>
+                    <div [hidden]="!(editForm.controls.domicilioFiscal?.dirty && editForm.controls.domicilioFiscal?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.domicilioFiscal?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.proveedor.personaAutorizada" for="field_personaAutorizada">Persona Autorizada</label>
+                    <input type="text" class="form-control" name="personaAutorizada" id="field_personaAutorizada"
+                        [(ngModel)]="proveedor.personaAutorizada" required/>
+                    <div [hidden]="!(editForm.controls.personaAutorizada?.dirty && editForm.controls.personaAutorizada?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.personaAutorizada?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.proveedor.correoElectronico" for="field_correoElectronico">Correo Electronico</label>
+                    <input type="text" class="form-control" name="correoElectronico" id="field_correoElectronico"
+                        [(ngModel)]="proveedor.correoElectronico" required pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$"/>
+                    <div [hidden]="!(editForm.controls.correoElectronico?.dirty && editForm.controls.correoElectronico?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.correoElectronico?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.correoElectronico?.errors?.pattern" jhiTranslate="entity.validation.pattern" translateValues="{ pattern: 'Correo Electronico' }">
+                            This field should follow pattern for "Correo Electronico".
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.proveedor.telefonoContacto" for="field_telefonoContacto">Telefono Contacto</label>
+                    <input type="text" class="form-control" name="telefonoContacto" id="field_telefonoContacto"
+                        [(ngModel)]="proveedor.telefonoContacto" required/>
+                    <div [hidden]="!(editForm.controls.telefonoContacto?.dirty && editForm.controls.telefonoContacto?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.telefonoContacto?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.proveedor.telefonoContactoDos" for="field_telefonoContactoDos">Telefono Contacto Dos</label>
+                    <input type="text" class="form-control" name="telefonoContactoDos" id="field_telefonoContactoDos"
+                        [(ngModel)]="proveedor.telefonoContactoDos" required/>
+                    <div [hidden]="!(editForm.controls.telefonoContactoDos?.dirty && editForm.controls.telefonoContactoDos?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.telefonoContactoDos?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.proveedor.user" for="field_user">User</label>
+                    <select class="form-control" id="field_user" name="user" [(ngModel)]="proveedor.user" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id === proveedor.user?.id ? proveedor.user : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+{
+    "comprasGobUpApp": {
+        "MetodoPago": {
+            "null": "",
+            "CREDITO": "CREDITO",
+            "AJUSTE": "AJUSTE",
+            "ADECUACION": "ADECUACION"
+        }
+    }
+}

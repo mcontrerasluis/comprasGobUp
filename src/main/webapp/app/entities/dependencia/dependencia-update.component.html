@@ -1,0 +1,116 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-dependencia-heading" jhiTranslate="comprasGobUpApp.dependencia.home.createOrEditLabel">Create or edit a Dependencia</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!dependencia.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="dependencia.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.dependencia.ramo" for="field_ramo">Ramo</label>
+                    <input type="number" class="form-control" name="ramo" id="field_ramo"
+                        [(ngModel)]="dependencia.ramo" required/>
+                    <div [hidden]="!(editForm.controls.ramo?.dirty && editForm.controls.ramo?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.ramo?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.ramo?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.dependencia.nombreRamo" for="field_nombreRamo">Nombre Ramo</label>
+                    <input type="text" class="form-control" name="nombreRamo" id="field_nombreRamo"
+                        [(ngModel)]="dependencia.nombreRamo" required/>
+                    <div [hidden]="!(editForm.controls.nombreRamo?.dirty && editForm.controls.nombreRamo?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.nombreRamo?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.dependencia.unidad" for="field_unidad">Unidad</label>
+                    <input type="text" class="form-control" name="unidad" id="field_unidad"
+                        [(ngModel)]="dependencia.unidad" required/>
+                    <div [hidden]="!(editForm.controls.unidad?.dirty && editForm.controls.unidad?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.unidad?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.dependencia.nombreUnidad" for="field_nombreUnidad">Nombre Unidad</label>
+                    <input type="text" class="form-control" name="nombreUnidad" id="field_nombreUnidad"
+                        [(ngModel)]="dependencia.nombreUnidad" required/>
+                    <div [hidden]="!(editForm.controls.nombreUnidad?.dirty && editForm.controls.nombreUnidad?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.nombreUnidad?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.dependencia.contacto" for="field_contacto">Contacto</label>
+                    <input type="text" class="form-control" name="contacto" id="field_contacto"
+                        [(ngModel)]="dependencia.contacto" required/>
+                    <div [hidden]="!(editForm.controls.contacto?.dirty && editForm.controls.contacto?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.contacto?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.dependencia.correoElectronico" for="field_correoElectronico">Correo Electronico</label>
+                    <input type="text" class="form-control" name="correoElectronico" id="field_correoElectronico"
+                        [(ngModel)]="dependencia.correoElectronico" required pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$"/>
+                    <div [hidden]="!(editForm.controls.correoElectronico?.dirty && editForm.controls.correoElectronico?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.correoElectronico?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.correoElectronico?.errors?.pattern" jhiTranslate="entity.validation.pattern" translateValues="{ pattern: 'Correo Electronico' }">
+                            This field should follow pattern for "Correo Electronico".
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.dependencia.telefono" for="field_telefono">Telefono</label>
+                    <input type="text" class="form-control" name="telefono" id="field_telefono"
+                        [(ngModel)]="dependencia.telefono" required/>
+                    <div [hidden]="!(editForm.controls.telefono?.dirty && editForm.controls.telefono?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.telefono?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.dependencia.user" for="field_user">User</label>
+                    <select class="form-control" id="field_user" name="user" [(ngModel)]="dependencia.user" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id === dependencia.user?.id ? dependencia.user : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

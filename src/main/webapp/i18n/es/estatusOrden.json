@@ -1,0 +1,10 @@
+{
+    "comprasGobUpApp": {
+        "EstatusOrden": {
+            "null": "",
+            "COMPLETADA": "COMPLETADA",
+            "PENDIENTE": "PENDIENTE",
+            "CANCELADA": "CANCELADA"
+        }
+    }
+}

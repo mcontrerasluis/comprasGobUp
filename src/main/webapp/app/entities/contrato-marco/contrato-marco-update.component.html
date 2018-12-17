@@ -1,0 +1,192 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-contrato-marco-heading" jhiTranslate="comprasGobUpApp.contratoMarco.home.createOrEditLabel">Create or edit a Contrato Marco</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!contratoMarco.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="contratoMarco.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.contratoMarco.autor" for="field_autor">Autor</label>
+                    <input type="text" class="form-control" name="autor" id="field_autor"
+                        [(ngModel)]="contratoMarco.autor" required/>
+                    <div [hidden]="!(editForm.controls.autor?.dirty && editForm.controls.autor?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.autor?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.contratoMarco.titulo" for="field_titulo">Titulo</label>
+                    <input type="text" class="form-control" name="titulo" id="field_titulo"
+                        [(ngModel)]="contratoMarco.titulo" required/>
+                    <div [hidden]="!(editForm.controls.titulo?.dirty && editForm.controls.titulo?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.titulo?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.contratoMarco.descripcion" for="field_descripcion">Descripcion</label>
+                    <textarea class="form-control" name="descripcion" id="field_descripcion"
+                        [(ngModel)]="contratoMarco.descripcion" required></textarea>
+                    <div [hidden]="!(editForm.controls.descripcion?.dirty && editForm.controls.descripcion?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.descripcion?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.contratoMarco.fechaVigencia" for="field_fechaVigencia">Fecha Vigencia</label>
+                    <div class="input-group">
+                        <input id="field_fechaVigencia" type="text" class="form-control" name="fechaVigencia" ngbDatepicker  #fechaVigenciaDp="ngbDatepicker" [(ngModel)]="contratoMarco.fechaVigencia"
+                        required/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="fechaVigenciaDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div [hidden]="!(editForm.controls.fechaVigencia?.dirty && editForm.controls.fechaVigencia?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.fechaVigencia?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.contratoMarco.monto" for="field_monto">Monto</label>
+                    <input type="number" class="form-control" name="monto" id="field_monto"
+                        [(ngModel)]="contratoMarco.monto" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.contratoMarco.cantidad" for="field_cantidad">Cantidad</label>
+                    <input type="number" class="form-control" name="cantidad" id="field_cantidad"
+                        [(ngModel)]="contratoMarco.cantidad" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.contratoMarco.imagen" for="field_imagen">Imagen</label>
+                    <div>
+                        <img [src]="'data:' + contratoMarco.imagenContentType + ';base64,' + contratoMarco.imagen" style="max-height: 100px;" *ngIf="contratoMarco.imagen" alt="contratoMarco image"/>
+                        <div *ngIf="contratoMarco.imagen" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{contratoMarco.imagenContentType}}, {{byteSize(contratoMarco.imagen)}}</span>
+                            <button type="button" (click)="clearInputImage('imagen', 'imagenContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_imagen" (change)="setFileData($event, contratoMarco, 'imagen', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="imagen" id="field_imagen"
+                        [(ngModel)]="contratoMarco.imagen" />
+                    <input type="hidden" class="form-control" name="imagenContentType" id="field_imagenContentType"
+                        [(ngModel)]="contratoMarco.imagenContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.contratoMarco.contrato" for="field_contrato">Contrato</label>
+                    <div>
+                        <div *ngIf="contratoMarco.contrato" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(contratoMarco.contratoContentType, contratoMarco.contrato)" jhiTranslate="entity.action.open">open</a><br>
+                            <span class="pull-left">{{contratoMarco.contratoContentType}}, {{byteSize(contratoMarco.contrato)}}</span>
+                            <button type="button" (click)="contratoMarco.contrato=null;contratoMarco.contratoContentType=null;"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_contrato" (change)="setFileData($event, contratoMarco, 'contrato', false)" jhiTranslate="entity.action.addblob"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="contrato" id="field_contrato"
+                        [(ngModel)]="contratoMarco.contrato" />
+                    <input type="hidden" class="form-control" name="contratoContentType" id="field_contratoContentType"
+                        [(ngModel)]="contratoMarco.contratoContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.contratoMarco.anexo" for="field_anexo">Anexo</label>
+                    <div>
+                        <div *ngIf="contratoMarco.anexo" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(contratoMarco.anexoContentType, contratoMarco.anexo)" jhiTranslate="entity.action.open">open</a><br>
+                            <span class="pull-left">{{contratoMarco.anexoContentType}}, {{byteSize(contratoMarco.anexo)}}</span>
+                            <button type="button" (click)="contratoMarco.anexo=null;contratoMarco.anexoContentType=null;"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_anexo" (change)="setFileData($event, contratoMarco, 'anexo', false)" jhiTranslate="entity.action.addblob"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="anexo" id="field_anexo"
+                        [(ngModel)]="contratoMarco.anexo" />
+                    <input type="hidden" class="form-control" name="anexoContentType" id="field_anexoContentType"
+                        [(ngModel)]="contratoMarco.anexoContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.contratoMarco.convenio" for="field_convenio">Convenio</label>
+                    <div>
+                        <div *ngIf="contratoMarco.convenio" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(contratoMarco.convenioContentType, contratoMarco.convenio)" jhiTranslate="entity.action.open">open</a><br>
+                            <span class="pull-left">{{contratoMarco.convenioContentType}}, {{byteSize(contratoMarco.convenio)}}</span>
+                            <button type="button" (click)="contratoMarco.convenio=null;contratoMarco.convenioContentType=null;"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_convenio" (change)="setFileData($event, contratoMarco, 'convenio', false)" jhiTranslate="entity.action.addblob"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="convenio" id="field_convenio"
+                        [(ngModel)]="contratoMarco.convenio" />
+                    <input type="hidden" class="form-control" name="convenioContentType" id="field_convenioContentType"
+                        [(ngModel)]="contratoMarco.convenioContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.contratoMarco.requisitos" for="field_requisitos">Requisitos</label>
+                    <div>
+                        <div *ngIf="contratoMarco.requisitos" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(contratoMarco.requisitosContentType, contratoMarco.requisitos)" jhiTranslate="entity.action.open">open</a><br>
+                            <span class="pull-left">{{contratoMarco.requisitosContentType}}, {{byteSize(contratoMarco.requisitos)}}</span>
+                            <button type="button" (click)="contratoMarco.requisitos=null;contratoMarco.requisitosContentType=null;"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_requisitos" (change)="setFileData($event, contratoMarco, 'requisitos', false)" jhiTranslate="entity.action.addblob"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="requisitos" id="field_requisitos"
+                        [(ngModel)]="contratoMarco.requisitos" />
+                    <input type="hidden" class="form-control" name="requisitosContentType" id="field_requisitosContentType"
+                        [(ngModel)]="contratoMarco.requisitosContentType" />
+                </div>
+
+                <div class="form-group">
+                    <label jhiTranslate="comprasGobUpApp.contratoMarco.proveedor" for="field_proveedor">Proveedor</label>
+                    <select class="form-control" id="field_proveedor" multiple name="proveedor" [(ngModel)]="contratoMarco.proveedors">
+                        <option [ngValue]="getSelected(contratoMarco.proveedors, proveedorOption)" *ngFor="let proveedorOption of proveedors; trackBy: trackProveedorById">{{proveedorOption.nombre}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.contratoMarco.cUCOP" for="field_cUCOP">C UCOP</label>
+                    <select class="form-control" id="field_cUCOP" name="cUCOP" [(ngModel)]="contratoMarco.cUCOP" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="cUCOPOption.id === contratoMarco.cUCOP?.id ? contratoMarco.cUCOP : cUCOPOption" *ngFor="let cUCOPOption of cucops; trackBy: trackCUCOPById">{{cUCOPOption.descripcion}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="comprasGobUpApp.contratoMarco.dependencia" for="field_dependencia">Dependencia</label>
+                    <select class="form-control" id="field_dependencia" name="dependencia" [(ngModel)]="contratoMarco.dependencia" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="dependenciaOption.id === contratoMarco.dependencia?.id ? contratoMarco.dependencia : dependenciaOption" *ngFor="let dependenciaOption of dependencias; trackBy: trackDependenciaById">{{dependenciaOption.nombreUnidad}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

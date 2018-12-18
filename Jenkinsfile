@@ -39,7 +39,7 @@ node {
 //    }
 
     stage('packaging') {
-        sh "./gradlew bootWar -x test -Pprod -PnodeInstall --no-daemon"
+        sh "./gradlew bootWar -x test -Pdev -PnodeInstall --no-daemon"
         archiveArtifacts artifacts: '**/build/libs/*.war', fingerprint: true
     }
 

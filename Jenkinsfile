@@ -28,15 +28,15 @@ node {
  //       }
  //   }
 
-    stage('frontend tests') {
-        try {
-            sh "./gradlew npm_test -PnodeInstall --no-daemon"
-        } catch(err) {
-            throw err
-        } finally {
-            junit '**/build/test-results/jest/TESTS-*.xml'
-        }
-    }
+//    stage('frontend tests') {
+//        try {
+//            sh "./gradlew npm_test -PnodeInstall --no-daemon"
+//        } catch(err) {
+//            throw err
+//        } finally {
+//            junit '**/build/test-results/jest/TESTS-*.xml'
+//        }
+//    }
 
     stage('packaging') {
         sh "./gradlew bootWar -x test -Pprod -PnodeInstall --no-daemon"

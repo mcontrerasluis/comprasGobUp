@@ -18,15 +18,15 @@ node {
         sh "./gradlew npmInstall -PnodeInstall --no-daemon"
     }
 
-    stage('backend tests') {
-        try {
-            sh "./gradlew test -PnodeInstall --no-daemon"
-        } catch(err) {
-            throw err
-        } finally {
-            junit '**/build/**/TEST-*.xml'
-        }
-    }
+ //   stage('backend tests') {
+ //       try {
+ //           sh "./gradlew test -PnodeInstall --no-daemon"
+ //       } catch(err) {
+ //           throw err
+ //       } finally {
+ //           junit '**/build/**/TEST-*.xml'
+ //       }
+ //   }
 
     stage('frontend tests') {
         try {
